@@ -1,6 +1,6 @@
 const TelegramBot = require('node-telegram-bot-api');
 const io = require('socket.io-client');
-const led_client = io('${LEDHOST}');
+const led_client = io('${process.env.LEDHOST}');
 const token = process.env.TOKEN;
 const id = process.env.ID;
 const colors = {

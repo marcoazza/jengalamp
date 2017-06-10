@@ -4,6 +4,9 @@ services:
     build:
       context: ~/jengalamp/led_manager/
     privileged: true
+    environment:
+      - LEDSERVICE_HOST=localhost
+      - LEDSERVICE_PORT=9000
   tbot:
     build:
       context: ~/jengalamp/tbot/

@@ -5,7 +5,7 @@ from multiprocessing import Process, Pipe
 import effects
 
 
-sio = socketio.AsyncServer()
+sio = socketio.Server()
 app = web.Application()
 sio.attach(app)
 

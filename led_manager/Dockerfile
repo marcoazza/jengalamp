@@ -10,4 +10,4 @@ RUN apt-get -q update && \
     mkdir /app
 
 COPY . /app
-CMD ["python3", "main.py"]
+CMD ["python3", "/app/main.py"]

@@ -6,11 +6,11 @@ services:
     environment:
       - LEDSERVICE_HOST=localhost
       - LEDSERVICE_PORT=9000
-    volume:
+    volumes:
       - ~/jengalamp/led_manager:/app
   tbot:
     image: jengalamp_tbot
     env_file:
       - ~/.env
-    volume:
+    volumes:
       - ~/jengalamp/tbot:/bot

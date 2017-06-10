@@ -1,0 +1,11 @@
+version: '2'
+services:
+  led:
+    build:
+      context: ~/jengalamp/led_manager/
+    privileged: true
+  tbot:
+    build:
+      context: ~/jengalamp/tbot/
+    env-file:
+      - ~/.env

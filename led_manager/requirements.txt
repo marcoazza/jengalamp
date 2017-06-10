@@ -1,0 +1,4 @@
+aiohttp
+python-socketio
+rpi-ws281x
+unicornhat

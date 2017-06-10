@@ -3,4 +3,4 @@ RUN mkdir /bot
 WORKDIR /bot
 COPY package.json index.js /bot/
 RUN npm install
-#ENTRYPOINT ["node", "."]
+ENTRYPOINT ["node", "."]

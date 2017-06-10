@@ -1,6 +1,7 @@
 version: '2'
 services:
   led:
+    image: jengalamp_led_manager
     build:
       context: ~/jengalamp/led_manager/
     privileged: true
@@ -8,6 +9,7 @@ services:
       - LEDSERVICE_HOST=localhost
       - LEDSERVICE_PORT=9000
   tbot:
+    image: jengalamp_tbot
     build:
       context: ~/jengalamp/tbot/
     env_file:

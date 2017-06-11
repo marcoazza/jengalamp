@@ -15,9 +15,11 @@ def effect_daemon(conn):
         try:
             if newdata:
                 style = newdata.get('style')
+                color = newdata.get('color')
                 current_style = styles.available.get(style)
                 if current_style:
-                    current_instance = current_style(unicorn, height, width)
+                    r, g, b = color
+                    current_instance = current_style(unicorn, height, width, r, g, b)
                     newdata = None
             if current_instance:
                 current_instance.render()

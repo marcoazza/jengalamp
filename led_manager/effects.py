@@ -31,6 +31,7 @@ def effect_daemon(conn):
         except KeyboardInterrupt:
             print('loading new data..')
             newdata = conn.recv()
+    print('closing connection....')
     conn.close()
 
 

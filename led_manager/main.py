@@ -5,9 +5,6 @@ import os
 from multiprocessing import Process, Pipe
 import effects
 
-print('qweqweqweqwe')
-
-
 sio = socketio.Server()
 app = Flask(__name__)
 

@@ -1,50 +1,39 @@
-# import math
-# import time
-# import unicornhat as unicorn
+import unicornhat as unicorn
+import styles
+from multiprocessing import Process, Pipe
 
-# unicorn.set_layout(unicorn.AUTO)
-# unicorn.rotation(0)
-# unicorn.brightness(0.5)
-# width, height = unicorn.get_shape()
-
-
-# def rainbow():
-#     i = 0.0
-#     offset = 30
-#     while True:
-#         i = (i + 0.3) % math.pi
-#         for y in range(height):
-#             for x in range(width):
-#                 r = (math.cos((x + i) / 2.0) + math.cos((y + i) / 2.0)) * 64.0 + 128.0
-#                 g = (math.sin((x + i) / 1.5) + math.sin((y + i) / 2.0)) * 64.0 + 128.0
-#                 b = (math.sin((x + i) / 2.0) + math.cos((y + i) / 1.5)) * 64.0 + 128.0
-#                 r = max(0, min(255, r + offset))
-#                 g = max(0, min(255, g + offset))
-#                 b = max(0, min(255, b + offset))
-#                 unicorn.set_pixel(x, y, int(r), int(g), int(b))
-#         unicorn.show()
-#         time.sleep(0.1)
+unicorn.set_layout(unicorn.AUTO)
+unicorn.rotation(0)
+unicorn.brightness(0.5)
+width, height = unicorn.get_shape()
 
 
-# def simple():
-#     for y in range(height):
-#         for x in range(width):
-#             unicorn.set_pixel(x, y, 255, 0, 255)
-#             time.sleep(0.05)
-
-#     unicorn.show()
-
-#     while True:
-#         try:
-#             pass
-#         except KeyboardInterrupt:
-#             break
+def effect_daemon(conn):
+    initialized = False
+    while True:
+        try:
+            data = conn.recv()
+            style = data.get('style')
+            current_style = styles.available.get(style)
+            if not initialized and current_style:
+                print('Initialize {]'.format(style))
+                current_instance = current_style()
+                initialized = True
+            current_instance.render()
+        except KeyboardInterrupt:
+            initialized = False
+    conn.close()
 
 
 def led_manager(conn):
+    parent_conn, child_conn = Pipe()
+    p = Process(target=effect_daemon, args=(child_conn,))
+    p.start()
     while True:
         try:
-            print('board received ===> ', conn.recv())
+            data = conn.recv()
+            print('board received ===> ', data)
+            parent_conn.send(data)
         except KeyboardInterrupt:
-            break
-    conn.close()
+            pass
+    parent_conn.close()

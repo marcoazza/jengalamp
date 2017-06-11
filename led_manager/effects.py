@@ -45,4 +45,5 @@ def led_manager(conn):
             parent_conn.send(data)
         except KeyboardInterrupt:
             pass
+    unicorn.off()
     parent_conn.close()

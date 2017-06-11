@@ -1,6 +1,8 @@
 import unicornhat as unicorn
 import styles
 from multiprocessing import Process, Pipe
+import signal
+
 
 unicorn.set_layout(unicorn.AUTO)
 unicorn.rotation(0)
@@ -36,6 +38,7 @@ def led_manager(conn):
         try:
             data = conn.recv()
             print('board received ===> ', data)
+            os.kill(p.pid, signal.SIGINT)
             parent_conn.send(data)
         except KeyboardInterrupt:
             pass

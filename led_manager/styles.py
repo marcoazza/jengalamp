@@ -9,33 +9,33 @@ class Action:
 
 
 class Simple(Action):
-    def __init__(self, unicorn, height, width):
+    def __init__(self, unicorn, height, width, r=None, g=None, b=None):
         self.unicorn = unicorn
         self.width = width
         self.height = height
         for y in range(self.height):
             for x in range(self.width):
-                self.unicorn.set_pixel(x, y, 255, 0, 255)
+                self.unicorn.set_pixel(x, y, r, g, b)
 
     def render(self):
         self.unicorn.show()
 
 
 class Blink(Action):
-    def __init__(self, unicorn, height, width):
+    def __init__(self, unicorn, height, width, r=None, g=None, b=None):
         self.unicorn = unicorn
         self.width = width
         self.height = height
         for y in range(self.height):
             for x in range(self.width):
-                self.unicorn.set_pixel(x, y, 255, 0, 255)
+                self.unicorn.set_pixel(x, y, r, g, b)
 
     def render(self):
         self.unicorn.show()
 
 
 class Rainbow(Action):
-    def __init__(self, unicorn, height, width):
+    def __init__(self, unicorn, height, width, r=None, g=None, b=None):
         self.unicorn = unicorn
         self.width = width
         self.height = height

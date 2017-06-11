@@ -9,19 +9,20 @@ width, height = unicorn.get_shape()
 
 
 def effect_daemon(conn):
-    initialized = False
+    newdata = None
+    current_instance = None
     while True:
         try:
-            data = conn.recv()
-            style = data.get('style')
-            current_style = styles.available.get(style)
-            if not initialized and current_style:
-                print('Initialize {}'.format(style))
-                current_instance = current_style(unicorn, height, width)
-                initialized = True
-            current_instance.render()
+            if newdata:
+                style = newdata.get('style')
+                current_style = styles.available.get(style)
+                if current_style:
+                    current_instance = current_style(unicorn, height, width)
+                    newdata = None
+            if current_instance:
+                current_instance.render()
         except KeyboardInterrupt:
-            initialized = False
+            newdata = conn.recv()
     conn.close()
 
 

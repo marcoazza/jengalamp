@@ -38,6 +38,6 @@ if __name__ == '__main__':
         app = socketio.Middleware(sio, app)
 
         # deploy as an eventlet WSGI server
-        eventlet.wsgi.server(eventlet.listen((host, port)), app)
+        eventlet.wsgi.server(eventlet.listen((host, 9000)), app)
     except KeyError as e:
         print('Failling start Service reason: {}'.format(e))

@@ -36,13 +36,15 @@ if __name__ == '__main__':
         print('asdfasdfasdf')
         host = os.environ.get('LEDSERVICE_HOST')
         port = os.environ.get('LEDSERVICE_PORT')
+        print('Create Pipe')
         p.start()
         # wrap Flask application with socketio's middleware
+        print('Create app')
         app = socketio.Middleware(sio, app)
 
         # deploy as an eventlet WSGI server
         print('Starting server on `{}:{}`'.format(host, port))
-        eventlet.wsgi.server(eventlet.listen(('localhost', 9000)), app)
+        eventlet.wsgi.server(eventlet.listen((host, port)), app)
         print('Started!')
     except KeyError as e:
         print('Failling start Service reason: {}'.format(e))

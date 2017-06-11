@@ -2,7 +2,7 @@ const TelegramBot = require('node-telegram-bot-api');
 const io = require('socket.io-client');
 const led_client = io('${process.env.LEDHOST}');
 const token = process.env.TOKEN;
-const id = process.env.ID;
+const id = Number(process.env.ID);
 const colors = {
     red: [255, 0, 0],
     violet: [148, 0, 211],
@@ -33,7 +33,6 @@ function getDefault(color){
 }
 
 bot.onText(rgbColorReg, (msg, match) => {
-    console.log(`Received message: ` + JSON.stringify(msg));
     if (msg.from.id === id) {
         const style = match[1] || 'simple';
         const color = getDefault(match[2]);

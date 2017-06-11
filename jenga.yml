@@ -9,12 +9,13 @@ services:
     expose:
       - "9000"
     networks:
-      - bridge
+      - botnet
   tbot:
     image: jengalamp_tbot
     env_file:
       - ~/.env
     networks:
-      - bridge
+      - botnet
 networks:
-  bridge:
+  botnet:
+    external: true

@@ -7,8 +7,8 @@ services:
     environment:
       - LEDSERVICE_HOST=localhost
       - LEDSERVICE_PORT=9000
-    expose:
-      - "9000"
+    ports:
+      - "9000:9000"
     networks:
       - botnet
   tbot:

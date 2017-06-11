@@ -21,11 +21,11 @@ def effect_daemon(conn):
                 color = newdata.get('color')
                 print('data change for board style:{}   color: {}'.format(style, color))
                 current_style = styles.available.get(style)
+                newdata = None
                 if current_style:
                     r, g, b = color
                     current_instance = current_style(unicorn, height, width, r, g, b)
                     print('set new instance with color {}-{}-{}'.format(r, g, b))
-                    newdata = None
             if current_instance:
                 current_instance.render()
         except KeyboardInterrupt:

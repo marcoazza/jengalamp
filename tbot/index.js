@@ -41,7 +41,7 @@ bot.onText(rgbColorReg, (msg, match) => {
                 case 'simple':
                 case 'blink':
                     console.log(`Style: ${style} with color: ${color}`);
-                    led_client.emit('change', {color: color, style: style});
+                    led_client.emit('change', {color: color, style: style.trim()});
                     break;
             }
         }

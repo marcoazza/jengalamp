@@ -9,7 +9,7 @@ class Action:
 
 
 class Simple(Action):
-    def __init__(self, unicorn=None, height, width):
+    def __init__(self, unicorn, height, width):
         self.unicorn = unicorn
         self.width = width
         self.height = height
@@ -22,7 +22,7 @@ class Simple(Action):
 
 
 class Blink(Action):
-    def __init__(self, unicorn=None, height, width):
+    def __init__(self, unicorn, height, width):
         self.unicorn = unicorn
         self.width = width
         self.height = height
@@ -35,7 +35,7 @@ class Blink(Action):
 
 
 class Rainbow(Action):
-    def __init__(self, unicorn=None, height, width):
+    def __init__(self, unicorn, height, width):
         self.unicorn = unicorn
         self.width = width
         self.height = height

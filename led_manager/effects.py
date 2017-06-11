@@ -18,6 +18,7 @@ def effect_daemon(conn):
             if newdata:
                 style = newdata.get('style')
                 color = newdata.get('color')
+                print('data change for board style:{}   color: {}'.format(style, color))
                 current_style = styles.available.get(style)
                 if current_style:
                     r, g, b = color
@@ -26,6 +27,7 @@ def effect_daemon(conn):
             if current_instance:
                 current_instance.render()
         except KeyboardInterrupt:
+            print('loading new data..')
             newdata = conn.recv()
     conn.close()
 

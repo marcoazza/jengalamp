@@ -44,7 +44,7 @@ if __name__ == '__main__':
 
         # deploy as an eventlet WSGI server
         print('Starting server on `{}:{}`'.format(host, int(port)))
-        eventlet.wsgi.server(eventlet.listen((host, port)), app)
+        eventlet.wsgi.server(eventlet.listen((host, int(port))), app)
         print('Started!')
     except KeyError as e:
         print('Failling start Service reason: {}'.format(e))

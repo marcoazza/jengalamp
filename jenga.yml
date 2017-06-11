@@ -4,10 +4,14 @@ services:
     image: jengalamp_led_manager
     container_name: led_manager
     privileged: true
+    stdin_open: true
+    tty: true
     env_file:
       - ~/led_manager.env
     ports:
       - "9000:9000"
+    expose:
+      - "9000"
     networks:
       - botnet
   tbot:

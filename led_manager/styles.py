@@ -71,6 +71,7 @@ class Rainbow(Action):
         self.unicorn = unicorn
         self.width = width
         self.height = height
+        self.r, self.g, self.b = r, g, b
         self.i = 0.0
         self.offset = 30
 
@@ -79,9 +80,9 @@ class Rainbow(Action):
         r = (math.cos((self.i) / 2.0) + math.cos((self.i) / 2.0)) * 64.0 + 128.0
         g = (math.sin((self.i) / 1.5) + math.sin((self.i) / 2.0)) * 64.0 + 128.0
         b = (math.sin((self.i) / 2.0) + math.cos((self.i) / 1.5)) * 64.0 + 128.0
-        r = max(0, min(255, r + self.offset))
-        g = max(0, min(255, g + self.offset))
-        b = max(0, min(255, b + self.offset))
+        self.r = max(0, min(255, r + self.offset))
+        self.g = max(0, min(255, g + self.offset))
+        self.b = max(0, min(255, b + self.offset))
         self._set_matrix(int(r), int(g), int(b))
         self.unicorn.show()
         time.sleep(0.1)

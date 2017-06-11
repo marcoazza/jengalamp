@@ -16,7 +16,7 @@ def effect_daemon(conn):
             style = data.get('style')
             current_style = styles.available.get(style)
             if not initialized and current_style:
-                print('Initialize {]'.format(style))
+                print('Initialize {}'.format(style))
                 current_instance = current_style()
                 initialized = True
             current_instance.render()

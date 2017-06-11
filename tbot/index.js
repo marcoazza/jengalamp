@@ -34,14 +34,14 @@ function getDefault(color){
 
 bot.onText(rgbColorReg, (msg, match) => {
     if (msg.from.id === id) {
-        const style = match[1].toLowerCase() || 'simple';
+        const style = match[1] || 'simple';
         const color = getDefault(match[2]);
         if(color){
-            switch(style.trim()){
+            switch(style.toLowerCase().trim()){
                 case 'simple':
                 case 'blink':
                     console.log(`Style: ${style} with color: ${color}`);
-                    led_client.emit('change', {color: color, style: style.trim()});
+                    led_client.emit('change', {color: color, style: style.toLowerCase().trim()});
                     break;
             }
         }

@@ -33,6 +33,7 @@ function getDefault(color){
 }
 
 bot.onText(rgbColorReg, (msg, match) => {
+    console.log(`Received message: ` + JSON.stringify(msg));
     if (msg.from.id === id) {
         const style = match[1] || 'simple';
         const color = getDefault(match[2]);

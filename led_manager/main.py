@@ -1,13 +1,13 @@
-from aiohttp import web
 import socketio
+import eventlet
+from flask import Flask
 import os
 from multiprocessing import Process, Pipe
 import effects
 
 
 sio = socketio.Server()
-app = web.Application()
-sio.attach(app)
+app = Flask(__name__)
 
 parent_conn, child_conn = Pipe()
 p = Process(target=effects.led_manager, args=(child_conn,))
@@ -34,6 +34,10 @@ if __name__ == '__main__':
         host = os.environ.get('LEDSERVICE_HOST')
         port = os.environ.get('LEDSERVICE_PORT')
         p.start()
-        web.run_app(app, host=host, port=port)
+        # wrap Flask application with socketio's middleware
+        app = socketio.Middleware(sio, app)
+
+        # deploy as an eventlet WSGI server
+        eventlet.wsgi.server(eventlet.listen(('', port)), app)
     except KeyError as e:
         print('Failling start Service reason: {}'.format(e))

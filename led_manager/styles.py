@@ -36,20 +36,20 @@ class Blink(Action):
         self._set_matrix(r, g, b)
 
     def _increase(self):
+        self.r = max(0, min(self.temp_r, self.temp_r + 1))
+        self.g = max(0, min(self.temp_g, self.temp_g + 1))
+        self.b = max(0, min(self.temp_b, self.temp_b + 1))
         self.temp_r += 1
         self.temp_g += 1
         self.temp_b += 1
-        self.r = max(0, min(self.temp_r, self.temp_r - 1))
-        self.g = max(0, min(self.temp_g, self.temp_g - 1))
-        self.b = max(0, min(self.temp_b, self.temp_b - 1))
 
     def _decrease(self):
+        self.r = max(0, min(self.r, self.temp_r - 1))
+        self.g = max(0, min(self.g, self.temp_g - 1))
+        self.b = max(0, min(self.b, self.temp_b - 1))
         self.temp_r -= 1
         self.temp_g -= 1
         self.temp_b -= 1
-        self.r = max(0, min(self.r, self.temp_r))
-        self.g = max(0, min(self.g, self.temp_g))
-        self.b = max(0, min(self.b, self.temp_b))
 
     def render(self):
         if self.decrease:

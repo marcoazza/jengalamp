@@ -2,6 +2,7 @@ version: '2'
 services:
   led_manager:
     image: jengalamp_led_manager
+    container_name: led_manager
     privileged: true
     environment:
       - LEDSERVICE_HOST=localhost
@@ -12,6 +13,7 @@ services:
       - botnet
   tbot:
     image: jengalamp_tbot
+    container_name: tbot
     env_file:
       - ~/.env
     networks:

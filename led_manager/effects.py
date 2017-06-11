@@ -24,8 +24,11 @@ def effect_daemon(conn):
                 newdata = None
                 if current_style:
                     r, g, b = color
-                    current_instance = current_style(unicorn, height, width, r, g, b)
-                    print('set new instance with color {}-{}-{}'.format(r, g, b))
+                    try:
+                        current_instance = current_style(unicorn, height, width, int(r), int(g), int(b))
+                        print('set new instance with color {}-{}-{}'.format(r, g, b))
+                    except:
+                        current_instance = None
             if current_instance:
                 current_instance.render()
         except KeyboardInterrupt:

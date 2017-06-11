@@ -17,7 +17,7 @@ def effect_daemon(conn):
             current_style = styles.available.get(style)
             if not initialized and current_style:
                 print('Initialize {}'.format(style))
-                current_instance = current_style()
+                current_instance = current_style(unicorn, height, width)
                 initialized = True
             current_instance.render()
         except KeyboardInterrupt:

@@ -5,6 +5,8 @@ import os
 from multiprocessing import Process, Pipe
 import effects
 
+print('qweqweqweqwe')
+
 
 sio = socketio.Server()
 app = Flask(__name__)
@@ -31,6 +33,7 @@ def disconnect(sid):
 
 if __name__ == '__main__':
     try:
+        print('asdfasdfasdf')
         host = os.environ.get('LEDSERVICE_HOST')
         port = os.environ.get('LEDSERVICE_PORT')
         p.start()
@@ -39,7 +42,7 @@ if __name__ == '__main__':
 
         # deploy as an eventlet WSGI server
         print('Starting server on `{}:{}`'.format(host, port))
-        eventlet.wsgi.server(eventlet.listen((host, 9000)), app)
+        eventlet.wsgi.server(eventlet.listen(('localhost', 9000)), app)
         print('Started!')
     except KeyError as e:
         print('Failling start Service reason: {}'.format(e))

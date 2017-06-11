@@ -4,9 +4,8 @@ services:
     image: jengalamp_led_manager
     container_name: led_manager
     privileged: true
-    environment:
-      - LEDSERVICE_HOST=localhost
-      - LEDSERVICE_PORT=9000
+    env_file:
+      - ~/led_manager.env
     ports:
       - "9000:9000"
     networks:

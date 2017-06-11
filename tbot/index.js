@@ -48,6 +48,14 @@ bot.onText(rgbColorReg, (msg, match) => {
     }
 });
 
+bot.onText(/^[Rr]ainbow$/, (msg, match) => {
+    if (msg.from.id === id) {
+        const style = match[1].toLowerCase();
+        const color = [0, 0, 0];
+        led_client.emit('change', {color: color, style: style.trim()});
+    }
+});
+
 bot.on('polling_error', (error) => {
   console.error(`Polling: ${error}`);
 });

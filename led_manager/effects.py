@@ -2,6 +2,7 @@ import unicornhat as unicorn
 import styles
 from multiprocessing import Process, Pipe
 import signal
+import os
 
 
 unicorn.set_layout(unicorn.AUTO)

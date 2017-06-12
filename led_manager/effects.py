@@ -7,7 +7,7 @@ import os
 
 unicorn.set_layout(unicorn.AUTO)
 unicorn.rotation(0)
-unicorn.brightness(0.5)
+unicorn.brightness(0.9)
 width, height = unicorn.get_shape()
 
 

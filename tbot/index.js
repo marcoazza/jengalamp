@@ -13,7 +13,7 @@ const colors = {
     white: [255, 255, 255],
 }
 
-const rgbColorReg = new RegExp(['^(blink\\s+)?(([a-zA-Z]+)|',
+const rgbColorReg = new RegExp(['^([Bb]link\\s+)?(([a-zA-Z]+)|',
     '(25[0-5]|2[0-4][0-9]|[01]?[0-9]?[0-9])\\s+',
     '(25[0-5]|2[0-4][0-9]|[01]?[0-9]?[0-9])\\s+',
     '(25[0-5]|2[0-4][0-9]|[01]?[0-9]?[0-9]))$'].join(''));
@@ -35,7 +35,7 @@ function getDefault(color){
 bot.onText(rgbColorReg, (msg, match) => {
     if (msg.from.id === id) {
         const style = match[1] || 'simple';
-        const color = getDefault(match[2]);
+        const color = getDefault(match[2].toLowerCase());
         if(color){
             switch(style.toLowerCase().trim()){
                 case 'simple':
@@ -50,7 +50,7 @@ bot.onText(rgbColorReg, (msg, match) => {
 
 bot.onText(/^[Rr]ainbow$/, (msg, match) => {
     if (msg.from.id === id) {
-        const style = match[1].toLowerCase();
+        const style = 'rainbow';
         const color = [0, 0, 0];
         led_client.emit('change', {color: color, style: style.trim()});
     }

@@ -21,14 +21,15 @@ def connect(sid, environ):
 @sio.on('change')
 def message(sid, data):
     print("message ", data)
-    parent_conn.send(data)
+    if parent_conn:
+        parent_conn.send(data)
 
 
 @sio.on('command')
 def command(sid, data):
     if data.get('command') == 'off':
         os.kill(p.pid, signal.SIGINT)
-        pass
+        parent_conn = None
     elif data.get('command') == 'on':
         parent_conn, child_conn = Pipe()
         p = Process(target=effects.led_manager, args=(child_conn,))

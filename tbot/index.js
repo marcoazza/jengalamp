@@ -56,6 +56,13 @@ bot.onText(/^[Rr]ainbow$/, (msg, match) => {
     }
 });
 
+bot.onText(/^([Oo]n|[Oo]ff)$/, (msg, match) => {
+    if (msg.from.id === id) {
+        const command = match[1].toLowerCase();
+        led_client.emit('command', {command:command});
+    }
+});
+
 bot.on('polling_error', (error) => {
   console.error(`Polling: ${error}`);
 });

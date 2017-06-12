@@ -4,6 +4,7 @@ from flask import Flask
 import os
 from multiprocessing import Process, Pipe
 import effects
+import signal
 
 sio = socketio.Server()
 app = Flask(__name__)
@@ -21,6 +22,17 @@ def connect(sid, environ):
 def message(sid, data):
     print("message ", data)
     parent_conn.send(data)
+
+
+@sio.on('command')
+def command(sid, data):
+    if data.get('command') == 'off':
+        os.kill(p.pid, signal.SIGINT)
+        pass
+    elif data.get('command') == 'on':
+        parent_conn, child_conn = Pipe()
+        p = Process(target=effects.led_manager, args=(child_conn,))
+        p.start()
 
 
 @sio.on('disconnect')

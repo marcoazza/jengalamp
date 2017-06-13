@@ -14,6 +14,7 @@ services:
       - "9000"
     networks:
       - botnet
+    restart: always
   tbot:
     image: jengalamp_tbot
     container_name: tbot
@@ -21,6 +22,7 @@ services:
       - ~/.env
     networks:
       - botnet
+    restart: always
 networks:
   botnet:
     external: true

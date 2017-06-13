@@ -20,9 +20,10 @@ class Simple(Action):
         self.width = width
         self.height = height
         self._set_matrix(r, g, b)
+        self.unicorn.show()
 
     def render(self):
-        self.unicorn.show()
+        time.sleep(1)
 
 
 class Blink(Action):

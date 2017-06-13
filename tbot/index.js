@@ -56,6 +56,14 @@ bot.onText(/^[Rr]ainbow$/, (msg, match) => {
     }
 });
 
+bot.onText(/^[Oo]ff$/, (msg, match) => {
+    if (msg.from.id === id) {
+        const style = 'simple';
+        const color = [0, 0, 0];
+        led_client.emit('change', {color: color, style: style.trim()});
+    }
+});
+
 bot.on('polling_error', (error) => {
   console.error(`Polling: ${error}`);
 });

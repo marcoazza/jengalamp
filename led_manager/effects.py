@@ -45,7 +45,6 @@ def led_manager(conn):
     while True:
         try:
             data = conn.recv()
-            print('board received ===> ', data)
             os.kill(p.pid, signal.SIGINT)
             parent_conn.send(data)
         except KeyboardInterrupt:

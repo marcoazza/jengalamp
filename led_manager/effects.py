@@ -15,7 +15,7 @@ width, height = unicorn.get_shape()
 class Effect(threading.Thread):
 
     def __init__(self, *args, **kwargs):
-        threading.Thread.__init__(self, args=args, kwargs=kwargs)
+        threading.Thread.__init__(self, args=(), kwargs=kwargs)
         self.args = args
         self.kwargs = kwargs
         self.shutdown_flag = threading.Event()

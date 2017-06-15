@@ -15,13 +15,13 @@ width, height = unicorn.get_shape()
 class Effect(threading.Thread):
 
     def __init__(self):
-        threading.Thread.__init__(self)
+        threading.Thread.__init__(self, data)
         self.shutdown_flag = threading.Event()
 
-    def run(self, data):
+    def run(self):
         print('Thread #%s started' % self.ident)
-        style = data.get('style')
-        color = data.get('color')
+        style = self.data.get('style')
+        color = self.data.get('color')
         print('data change for board style:{}   color: {}'.format(style, color))
         current_style = styles.available.get(style)
         if current_style:

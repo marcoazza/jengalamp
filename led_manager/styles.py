@@ -86,7 +86,7 @@ class Rainbow(Action):
         self.b = max(0, min(255, b + self.offset))
         self._set_matrix(int(r), int(g), int(b))
         self.unicorn.show()
-        time.sleep(0.02)
+        time.sleep(0.032)
 
 
 available = {

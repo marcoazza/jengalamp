@@ -91,7 +91,7 @@ class Rainbow(Action):
         self.g = 0
         self.b = 0
         
-        self._set_matrix(int(r), int(g), int(b))
+        self._set_matrix(int(self.r), int(0), int(0))
         self.unicorn.show()
         time.sleep(0.1)
 

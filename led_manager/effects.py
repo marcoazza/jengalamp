@@ -16,12 +16,10 @@ class Effect(threading.Thread):
 
     def __init__(self, *args, **kwargs):
         threading.Thread.__init__(self, args=(), kwargs=kwargs)
-        self.args = args
-        self.kwargs = kwargs
+        self.data = kwargs.get('data')
         self.shutdown_flag = threading.Event()
 
     def run(self):
-        print('Thread #{} started args {}'.format(self.ident, self.args))
         style = self.data.get('style')
         color = self.data.get('color')
         print('data change for board style:{}   color: {}'.format(style, color))

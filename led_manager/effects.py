@@ -57,6 +57,8 @@ def led_manager(conn):
                 print('Waiting for thread to be joined')
                 t.shutdown_flag.set()
                 t.join()
+                print('Joined')
+                t = None
             else:
                 print('Creating new thread')
                 t = Effect(data=data)

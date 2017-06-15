@@ -32,7 +32,7 @@ class Effect(threading.Thread):
             except:
                 current_instance = None
         if current_instance:
-            while True:
+            while not self.shutdown_flag.is_set():
                 try:
                     current_instance.render()
                 except KeyboardInterrupt:

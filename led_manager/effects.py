@@ -21,10 +21,10 @@ class Effect(threading.Thread):
         # self.data = data
         self.shutdown_flag = threading.Event()
 
-    def run(self):
+    def run(self, data):
         print('Thread #%s started' % self.ident)
-        style = self.data.get('style')
-        color = self.data.get('color')
+        style = data.get('style')
+        color = data.get('color')
         print('data change for board style:{}   color: {}'.format(style, color))
         current_style = styles.available.get(style)
         if current_style:

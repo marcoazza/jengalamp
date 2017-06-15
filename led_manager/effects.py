@@ -38,7 +38,7 @@ class Effect(threading.Thread):
                 except KeyboardInterrupt:
                     print('loading new data..')
             print('closing thread {}'.format(self.ident))
-
+        return
 
 def effect_daemon(conn, data):
     return

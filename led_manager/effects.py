@@ -1,9 +1,6 @@
 import unicornhat as unicorn
 import styles
-from multiprocessing import Process, Pipe
 import threading
-import signal
-import os
 
 
 unicorn.set_layout(unicorn.AUTO)
@@ -22,7 +19,7 @@ class Effect(threading.Thread):
     def run(self):
         style = self.data.get('style')
         color = self.data.get('color')
-        print('data change for board style:{}   color: {}'.format(style, color))
+        print('data change for board style:{}  color: {}'.format(style, color))
         current_style = styles.available.get(style)
         if current_style:
             r, g, b = color

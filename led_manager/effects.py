@@ -16,9 +16,6 @@ class Effect(threading.Thread):
 
     def __init__(self, *args, **kwargs):
         threading.Thread.__init__(self, *args, **kwargs)
-        print('asfasfd {}'.format(*args))
-        print('porcodio {}'.format(**kwargs))
-        # self.data = data
         self.shutdown_flag = threading.Event()
 
     def run(self, data):

@@ -40,15 +40,8 @@ class Effect(threading.Thread):
             print('closing thread {}'.format(self.ident))
         return
 
-def effect_daemon(conn, data):
-    return
-
 
 def led_manager(conn):
-    # parent_conn, child_conn = Pipe()
-    # p = Process(target=effect_daemon, args=(child_conn,))
-    # p.start()
-    # t = Thread(target=effect_daemon)
     t = None
     while True:
         try:
@@ -57,14 +50,10 @@ def led_manager(conn):
                 print('Waiting for thread to be joined')
                 t.shutdown_flag.set()
                 t.join()
-                print('Joined')
                 t = None
-            else:
-                print('Creating new thread')
-                t = Effect(data=data)
-                t.start()
-            # parent_conn.send(data)
+            print('Creating new thread')
+            t = Effect(data=data)
+            t.start()
         except KeyboardInterrupt:
             pass
     unicorn.off()
-    # parent_conn.close()

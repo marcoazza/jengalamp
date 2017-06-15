@@ -59,7 +59,7 @@ def led_manager(conn):
                 t.join()
             else:
                 print('Creating new thread')
-                t = Effect(data=(data,))
+                t = Effect(data=data)
                 t.start()
             # parent_conn.send(data)
         except KeyboardInterrupt:

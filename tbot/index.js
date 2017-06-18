@@ -35,7 +35,6 @@ function getDefault(color){
 }
 
 bot.onText(rgbColorReg, (msg, match) => {
-    console.log(`message id: ${msg.from.id}`);
     if (msg.from.id === id) {
         const style = match[1] || 'simple';
         const color = getDefault(match[2].toLowerCase());
